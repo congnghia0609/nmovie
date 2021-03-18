@@ -36,5 +36,5 @@ class Movie {
         backPoster = json["backdrop_path"],
         poster = json["poster_path"],
         overview = json["overview"],
-        rating = json["vote_rating"].toDouble();
+        rating = json["vote_average"].toDouble();
 }

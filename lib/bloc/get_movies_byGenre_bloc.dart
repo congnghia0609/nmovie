@@ -28,7 +28,9 @@ class MoviesListByGenreBloc {
   final BehaviorSubject<MovieResponse> _subject = BehaviorSubject<MovieResponse>();
 
   getMoviesByGenre(int id) async {
+    print("getMoviesByGenre.id="+id.toString());
     MovieResponse response = await _repository.getMovieByGenre(id);
+    print(response.movies.length);
     _subject.sink.add(response);
   }
 
