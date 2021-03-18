@@ -107,7 +107,7 @@ class _PersonsListState extends State<PersonsList> {
       );
     } else {
       return Container(
-        height: 116.0,
+        height: 125.0,
         padding: EdgeInsets.only(left: 10.0),
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -165,7 +165,7 @@ class _PersonsListState extends State<PersonsList> {
                     SizedBox(height: 3.0),
                     Text(
                       "Trending for " + persons[index].known,
-                      maxLines: 2,
+                      maxLines: 1,
                       style: TextStyle(
                         color: Style.Colors.titleColor,
                         fontWeight: FontWeight.bold,

@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           NowPlaying(),
           GenresScreen(),
           PersonsList(),
+          BestMovies(),
         ],
       ),
     );
