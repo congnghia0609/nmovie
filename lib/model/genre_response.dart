@@ -31,4 +31,9 @@ class GenreResponse {
         error = "";
 
   GenreResponse.withError(String errorValue) : genres = List(), error = errorValue;
+
+  @override
+  String toString() {
+    return 'GenreResponse{genres: $genres, error: $error}';
+  }
 }

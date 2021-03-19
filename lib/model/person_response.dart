@@ -31,4 +31,9 @@ class PersonResponse {
         error = "";
 
   PersonResponse.withError(String errorValue) : persons = List(), error = errorValue;
+
+  @override
+  String toString() {
+    return 'PersonResponse{persons: $persons, error: $error}';
+  }
 }

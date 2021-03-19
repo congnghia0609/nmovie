@@ -37,4 +37,9 @@ class Movie {
         poster = json["poster_path"],
         overview = json["overview"],
         rating = json["vote_average"].toDouble();
+
+  @override
+  String toString() {
+    return 'Movie{id: $id, popularity: $popularity, title: $title, backPoster: $backPoster, poster: $poster, overview: $overview, rating: $rating}';
+  }
 }

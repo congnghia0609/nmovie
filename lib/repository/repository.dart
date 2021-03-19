@@ -37,8 +37,8 @@ class MovieRepository {
     try {
       Response response = await _dio.get(getPopularUrl, queryParameters: params);
       return MovieResponse.fromJson(response.data);
-    } catch(error, stacktrace) {
-      print("Exception occured: $error stackTrace: $stacktrace");
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
       return MovieResponse.withError("$error");
     }
   }
@@ -48,8 +48,8 @@ class MovieRepository {
     try {
       Response response = await _dio.get(getPlayingUrl, queryParameters: params);
       return MovieResponse.fromJson(response.data);
-    } catch(error, stacktrace) {
-      print("Exception occured: $error stackTrace: $stacktrace");
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
       return MovieResponse.withError("$error");
     }
   }
@@ -59,8 +59,8 @@ class MovieRepository {
     try {
       Response response = await _dio.get(getGenresUrl, queryParameters: params);
       return GenreResponse.fromJson(response.data);
-    } catch(error, stacktrace) {
-      print("Exception occured: $error stackTrace: $stacktrace");
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
       return GenreResponse.withError("$error");
     }
   }
@@ -70,8 +70,8 @@ class MovieRepository {
     try {
       Response response = await _dio.get(getPersonsUrl, queryParameters: params);
       return PersonResponse.fromJson(response.data);
-    } catch(error, stacktrace) {
-      print("Exception occured: $error stackTrace: $stacktrace");
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
       return PersonResponse.withError("$error");
     }
   }
@@ -84,10 +84,53 @@ class MovieRepository {
       print("================");
       // print(response.data);
       return MovieResponse.fromJson(response.data);
-    } catch(error, stacktrace) {
-      print("Exception occured: $error stackTrace: $stacktrace");
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
       return MovieResponse.withError("$error");
     }
   }
 
+  Future<MovieDetailResponse> getMovieDetail(int id) async {
+    var params = {"api_key": apiKey, "language": "en-US"};
+    try {
+      Response response = await _dio.get(movieUrl + "/$id", queryParameters: params);
+      return MovieDetailResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
+      return MovieDetailResponse.withError("$error");
+    }
+  }
+
+  Future<VideoResponse> getMovieVideo(int id) async {
+    var params = {"api_key": apiKey, "language": "en-US"};
+    try {
+      Response response = await _dio.get(movieUrl + "/$id/videos", queryParameters: params);
+      return VideoResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
+      return VideoResponse.withError("$error");
+    }
+  }
+
+  Future<MovieResponse> getSimilarMovies(int id) async {
+    var params = {"api_key": apiKey, "language": "en-US"};
+    try {
+      Response response = await _dio.get(movieUrl + "/$id" + "/similar", queryParameters: params);
+      return MovieResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
+      return MovieResponse.withError("$error");
+    }
+  }
+
+  Future<CastResponse> getCasts(int id) async {
+    var params = {"api_key": apiKey, "language": "en-US"};
+    try {
+      Response response = await _dio.get(movieUrl + "/$id" + "/credits", queryParameters: params);
+      return CastResponse.fromJson(response.data);
+    } catch (error, stacktrace) {
+      print("Exception occurred: $error stackTrace: $stacktrace");
+      return CastResponse.withError("$error");
+    }
+  }
 }

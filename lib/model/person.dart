@@ -34,4 +34,9 @@ class Person {
         name = json["name"],
         profileImg = json["profile_path"],
         known = json["known_for_department"];
+
+  @override
+  String toString() {
+    return 'Person{id: $id, popularity: $popularity, name: $name, profileImg: $profileImg, known: $known}';
+  }
 }
