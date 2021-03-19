@@ -56,13 +56,13 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
               builder: (context, AsyncSnapshot<VideoResponse> snapshot) {
                 if (snapshot.hasData) {
                   if (snapshot.data.error != null && snapshot.data.error.length > 0) {
-                    return _buildErrorWidget(snapshot.data.error);
+                    return buildErrorWidget(snapshot.data.error);
                   }
                   return _buildVideoWidget(snapshot.data);
                 } else if (snapshot.hasError) {
-                  return _buildErrorWidget(snapshot.error);
+                  return buildErrorWidget(snapshot.error);
                 } else {
-                  return _buildLoadingWidget();
+                  return buildLoadingWidget();
                 }
               },
             ),
@@ -193,24 +193,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
         },
       ),
     );
-  }
-
-  Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [],
-    ));
-  }
-
-  Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
   }
 
   Widget _buildVideoWidget(VideoResponse data) {

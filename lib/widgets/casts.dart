@@ -9,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nmovie/bloc/blocs.dart';
 import 'package:nmovie/model/models.dart';
 import 'package:nmovie/style/theme.dart' as Style;
+import 'package:nmovie/widgets/widgets.dart';
 
 class Casts extends StatefulWidget {
   final int id;
@@ -58,45 +59,18 @@ class _CastsState extends State<Casts> {
           builder: (context, AsyncSnapshot<CastResponse> snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data.error != null && snapshot.data.error.length > 0) {
-                return _buildErrorWidget(snapshot.data.error);
+                return buildErrorWidget(snapshot.data.error);
               }
               return _buildCastWidget(snapshot.data);
             } else if (snapshot.hasError) {
-              return _buildErrorWidget(snapshot.error);
+              return buildErrorWidget(snapshot.error);
             } else {
-              return _buildLoadingWidget();
+              return buildLoadingWidget();
             }
           },
         ),
       ],
     );
-  }
-
-  Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 25.0,
-          width: 25.0,
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-          ),
-        )
-      ],
-    ));
-  }
-
-  Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
   }
 
   Widget _buildCastWidget(CastResponse data) {

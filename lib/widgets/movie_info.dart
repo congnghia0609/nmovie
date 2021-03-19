@@ -8,6 +8,7 @@ import 'package:flutter/painting.dart';
 import 'package:nmovie/bloc/blocs.dart';
 import 'package:nmovie/model/models.dart';
 import 'package:nmovie/style/theme.dart' as Style;
+import 'package:nmovie/widgets/widgets.dart';
 
 class MovieInfo extends StatefulWidget {
   final int id;
@@ -37,34 +38,16 @@ class _MovieInfoState extends State<MovieInfo> {
       builder: (context, AsyncSnapshot<MovieDetailResponse> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data.error != null && snapshot.data.error.length > 0) {
-            return _buildErrorWidget(snapshot.data.error);
+            return buildErrorWidget(snapshot.data.error);
           }
           return _buildMovieDetailWidget(snapshot.data);
         } else if (snapshot.hasError) {
-          return _buildErrorWidget(snapshot.error);
+          return buildErrorWidget(snapshot.error);
         } else {
-          return _buildLoadingWidget();
+          return buildEmptyWidget();
         }
       },
     );
-  }
-
-  Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [],
-    ));
-  }
-
-  Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
   }
 
   Widget _buildMovieDetailWidget(MovieDetailResponse data) {

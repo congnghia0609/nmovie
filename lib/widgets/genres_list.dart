@@ -5,11 +5,10 @@
 
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nmovie/bloc/get_movies_byGenre_bloc.dart';
+import 'package:nmovie/bloc/blocs.dart';
 import 'package:nmovie/model/models.dart';
 import 'package:nmovie/style/theme.dart' as Style;
-
-import 'movies_by_genre.dart';
+import 'package:nmovie/widgets/widgets.dart';
 
 class GenresList extends StatefulWidget {
   final List<Genre> genres;

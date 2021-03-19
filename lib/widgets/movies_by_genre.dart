@@ -7,10 +7,11 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:nmovie/bloc/get_movies_byGenre_bloc.dart';
+import 'package:nmovie/bloc/blocs.dart';
 import 'package:nmovie/model/models.dart';
 import 'package:nmovie/screens/detail_screen.dart';
 import 'package:nmovie/style/theme.dart' as Style;
+import 'package:nmovie/widgets/widgets.dart';
 
 class GenreMovies extends StatefulWidget {
   final int genreId;
@@ -40,43 +41,16 @@ class _GenreMoviesState extends State<GenreMovies> {
       builder: (context, AsyncSnapshot<MovieResponse> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data.error != null && snapshot.data.error.length > 0) {
-            return _buildErrorWidget(snapshot.data.error);
+            return buildErrorWidget(snapshot.data.error);
           }
           return _buildHomeWidget(snapshot.data);
         } else if (snapshot.hasError) {
-          return _buildErrorWidget(snapshot.error);
+          return buildErrorWidget(snapshot.error);
         } else {
-          return _buildLoadingWidget();
+          return buildLoadingWidget();
         }
       },
     );
-  }
-
-  Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 25.0,
-          width: 25.0,
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-          ),
-        )
-      ],
-    ));
-  }
-
-  Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
   }
 
   Widget _buildHomeWidget(MovieResponse data) {

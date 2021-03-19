@@ -4,9 +4,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:nmovie/bloc/get_genres_bloc.dart';
+import 'package:nmovie/bloc/blocs.dart';
 import 'package:nmovie/model/models.dart';
-import 'package:nmovie/widgets/genres_list.dart';
+import 'package:nmovie/widgets/widgets.dart';
 
 class GenresScreen extends StatefulWidget {
   @override
@@ -28,49 +28,22 @@ class _GenresScreenState extends State<GenresScreen> {
       builder: (context, AsyncSnapshot<GenreResponse> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data.error != null && snapshot.data.error.length > 0) {
-            return _buildErrorWidget(snapshot.data.error);
+            return buildErrorWidget(snapshot.data.error);
           }
           return _buildHomeWidget(snapshot.data);
         } else if (snapshot.hasError) {
-          return _buildErrorWidget(snapshot.error);
+          return buildErrorWidget(snapshot.error);
         } else {
-          return _buildLoadingWidget();
+          return buildLoadingWidget();
         }
       },
     );
   }
 
-  Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 25.0,
-          width: 25.0,
-          child: CircularProgressIndicator(
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-          ),
-        )
-      ],
-    ));
-  }
-
-  Widget _buildErrorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Error occured: $error"),
-      ],
-    ));
-  }
-
   Widget _buildHomeWidget(GenreResponse data) {
     List<Genre> genres = data.genres;
-    print(genres);
-    print(genres.length);
+    // print(genres);
+    print("genres.length=" + genres.length.toString());
     if (genres.length == 0) {
       return Container(
         width: MediaQuery.of(context).size.width,

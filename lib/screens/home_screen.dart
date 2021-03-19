@@ -25,11 +25,12 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("NMovie"),
         actions: [
           IconButton(
-              icon: Icon(
-                EvaIcons.searchOutline,
-                color: Colors.white,
-              ),
-              onPressed: () {}),
+            icon: Icon(
+              EvaIcons.searchOutline,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+          ),
         ],
       ),
       body: ListView(

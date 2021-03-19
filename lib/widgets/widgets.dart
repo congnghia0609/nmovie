@@ -3,6 +3,7 @@
  * @since Mar 18, 2021
  */
 
+export 'common.dart';
 export 'now_playing.dart';
 export 'genres.dart';
 export 'genres_list.dart';
