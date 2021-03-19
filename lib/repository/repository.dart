@@ -101,7 +101,7 @@ class MovieRepository {
     }
   }
 
-  Future<VideoResponse> getMovieVideo(int id) async {
+  Future<VideoResponse> getMovieVideos(int id) async {
     var params = {"api_key": apiKey, "language": "en-US"};
     try {
       Response response = await _dio.get(movieUrl + "/$id/videos", queryParameters: params);
