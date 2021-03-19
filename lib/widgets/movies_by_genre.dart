@@ -9,6 +9,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:nmovie/bloc/get_movies_byGenre_bloc.dart';
 import 'package:nmovie/model/models.dart';
+import 'package:nmovie/screens/detail_screen.dart';
 import 'package:nmovie/style/theme.dart' as Style;
 
 class GenreMovies extends StatefulWidget {
@@ -114,12 +115,12 @@ class _GenreMoviesState extends State<GenreMovies> {
               ),
               child: GestureDetector(
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => MovieDetailScreen(movie: movies[index]),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MovieDetailScreen(movie: movies[index]),
+                    ),
+                  );
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
